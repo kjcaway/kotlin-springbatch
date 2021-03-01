@@ -2,6 +2,9 @@ server:
   port: 8082
 
 spring:
+  batch:
+    job:
+      names: ${job.name:NONE}
   application:
     name: BATCH
   datasource:
