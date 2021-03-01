@@ -1,0 +1,44 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: BATCH
+  datasource:
+    url: jdbc:mariadb://localhost:3306/book
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: root
+    password: root
+    hikari:
+      connection-timeout: 5000
+      maximum-pool-size: 10
+  jpa:
+    open-in-view: false
+    generate-ddl: false
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: false
+    hibernate:
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+
+
+logging:
+  pattern:
+    console: "%d [%t] [${PID}] [%p] %logger : %msg %ex%n"   # t: thread, p: level
+    file: "%d [%t] [${PID}] [%p] %logger : %msg %ex%n"
+  file:
+    path: "/User/logs/"
+    name: "/User/logs/batch.log"
+  logback:
+    rollingpolicy:
+      max-file-size: 50MB
+      max-history: 30
+      total-size-cap: 1GB
+  level:
+    root: info
+    org:
+      springframework: warn
+      apache: warn
+
