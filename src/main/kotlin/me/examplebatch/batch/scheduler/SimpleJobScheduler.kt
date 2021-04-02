@@ -19,7 +19,7 @@ class SimpleJobScheduler(
     val simpleJobConfig: SimpleJobConfig
 ) {
     private val logger: Log = LogFactory.getLog(SimpleJobScheduler::class.java)
-    private val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+    private val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS")
 
     @Scheduled(initialDelay = 10000, fixedDelay = 30000)
     fun runJob(){

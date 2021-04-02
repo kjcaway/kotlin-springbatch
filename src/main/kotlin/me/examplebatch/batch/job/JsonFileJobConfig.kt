@@ -20,19 +20,20 @@ class JsonFileJobConfig(
     val jobBuilderFactory: JobBuilderFactory,
     val stepBuilderFactory: StepBuilderFactory
 ) {
-    private val logger: Log = LogFactory.getLog(JsonFileJobConfig::class.java)
     private final val chunkSize = 2;
+    private final val JSON_FILE_JOB = "JSON_FILE_JOB"
+    private final val JSON_FILE_JOB_STEP_1 = "JSON_FILE_JOB_STEP_1"
 
     @Bean
     fun jsonFileJob(): Job{
-        return jobBuilderFactory.get("jsonFileJob4")
+        return jobBuilderFactory.get(JSON_FILE_JOB)
             .start(jsonFileStep1())
             .build()
     }
 
     @Bean
     fun jsonFileStep1(): Step{
-        return stepBuilderFactory.get("jsonFileStep4")
+        return stepBuilderFactory.get(JSON_FILE_JOB_STEP_1)
             .chunk<JsonItem,JsonItem>(chunkSize)
             .reader(jsonItemReader())
             .writer{ jsonItem ->

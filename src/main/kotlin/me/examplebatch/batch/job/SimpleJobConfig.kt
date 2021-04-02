@@ -19,9 +19,13 @@ class SimpleJobConfig(
 ) {
     val logger: Log = LogFactory.getLog(SimpleJobConfig::class.java)
 
+    private final val SIMPLE_JOB = "SIMPLE_JOB"
+    private final val SIMPLE_JOB_STEP_1 = "SIMPLE_JOB_STEP_1"
+    private final val SIMPLE_JOB_STEP_2 = "SIMPLE_JOB_STEP_2"
+
     @Bean
     fun simpleJob(): Job {
-        return jobBuilderFactory.get("simpleJob5")
+        return jobBuilderFactory.get(SIMPLE_JOB)
             .start(simpleStep1())
             .next(simpleStep2())
             .build()
@@ -29,7 +33,7 @@ class SimpleJobConfig(
 
     @Bean
     fun simpleStep1(): Step{
-        return stepBuilderFactory.get("simpleStep1")
+        return stepBuilderFactory.get(SIMPLE_JOB_STEP_1)
             .tasklet { contribution, chunkContenxt ->
                 logger.info("SimpleStep1 >>>>>")
                 RepeatStatus.FINISHED
@@ -39,7 +43,7 @@ class SimpleJobConfig(
 
     @Bean
     fun simpleStep2(): Step{
-        return stepBuilderFactory.get("simpleStep2")
+        return stepBuilderFactory.get(SIMPLE_JOB_STEP_2)
             .tasklet(simpleTasklet)
             .build()
     }

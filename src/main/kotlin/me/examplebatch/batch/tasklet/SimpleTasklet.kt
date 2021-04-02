@@ -17,10 +17,13 @@ class SimpleTasklet : Tasklet {
 
     @Value("#{jobParameters[createDate]}")
     private val createDate: String? = null   // ex) In program arguments, set like 'createDate=2020-10-10'
+    @Value("#{jobParameters[time]}")
+    private val time: String? = null         // set in scheduler
 
     override fun execute(contribution: StepContribution, chunkContext: ChunkContext): RepeatStatus? {
         logger.info("SimpleTasklet >>>>")
         logger.info("createDate : $createDate")
+        logger.info("time: $time")
 
         return RepeatStatus.FINISHED
     }
