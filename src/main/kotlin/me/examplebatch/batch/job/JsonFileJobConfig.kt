@@ -1,8 +1,6 @@
 package me.examplebatch.batch.job
 
 import me.examplebatch.batch.type.JsonItem
-import org.apache.commons.logging.Log
-import org.apache.commons.logging.LogFactory
 import org.springframework.batch.core.Job
 import org.springframework.batch.core.Step
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory
@@ -20,9 +18,9 @@ class JsonFileJobConfig(
     val jobBuilderFactory: JobBuilderFactory,
     val stepBuilderFactory: StepBuilderFactory
 ) {
-    private final val chunkSize = 2;
     private final val JSON_FILE_JOB = "JSON_FILE_JOB"
     private final val JSON_FILE_JOB_STEP_1 = "JSON_FILE_JOB_STEP_1"
+    private final val chunkSize = 2;
 
     @Bean
     fun jsonFileJob(): Job{

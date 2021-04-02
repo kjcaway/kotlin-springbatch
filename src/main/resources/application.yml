@@ -46,3 +46,6 @@ logging:
       springframework: warn
       apache: warn
 
+schedule:
+  active: false  # if true, enable scheduler task
+
