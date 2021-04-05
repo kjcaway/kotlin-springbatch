@@ -20,8 +20,8 @@ class CustomReaderJobConfig(
         val bookRepository: BookRepository
 ) {
     private final val CUSTOM_READER_JOB = "CUSTOM_READER_JOB"
-    private final val CUSTOM_READER_JOB_STEP = "CUSTOM_READER_JOB_STEP"
-    private final val chunkSize = 10
+    private final val CUSTOM_READER_JOB_STEP = CUSTOM_READER_JOB +"_STEP"
+    private final val CHUNK_SIZE = 10
 
     @Bean
     fun customReaderJob(): Job{
@@ -33,7 +33,7 @@ class CustomReaderJobConfig(
     @Bean
     fun customReaderStep(): Step {
         return stepBuilderFactory.get(CUSTOM_READER_JOB_STEP)
-                .chunk<Book, Book>(chunkSize)
+                .chunk<Book, Book>(CHUNK_SIZE)
                 .reader(reader())
                 .processor(processor())
                 .writer(writer())
