@@ -5,6 +5,7 @@ import org.springframework.batch.core.Job
 import org.springframework.batch.core.Step
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory
+import org.springframework.batch.core.configuration.annotation.StepScope
 import org.springframework.batch.item.json.JacksonJsonObjectReader
 import org.springframework.batch.item.json.JsonItemReader
 import org.springframework.batch.item.json.builder.JsonItemReaderBuilder
@@ -41,6 +42,7 @@ class JsonFileJobConfig(
     }
 
     @Bean
+    @StepScope
     fun jsonItemReader(): JsonItemReader<JsonItem> {
         return JsonItemReaderBuilder<JsonItem>()
             .jsonObjectReader(JacksonJsonObjectReader(JsonItem::class.java))
